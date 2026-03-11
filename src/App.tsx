@@ -6,7 +6,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import { 
   Mail, Phone, MapPin, Linkedin, Github, 
   Code2, Database, BrainCircuit, LineChart, GraduationCap, 
-  Briefcase, Terminal, Send, MessageSquare, Menu, X, ArrowDown
+  Briefcase, Terminal, Send, MessageSquare, Menu, X, ArrowDown, CheckCircle
 } from 'lucide-react';
 import CanvasParticles from './components/CanvasParticles';
 import CustomCursor from './components/CustomCursor';
@@ -712,13 +712,22 @@ export default function App() {
               <div className="flex flex-col gap-3">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary hover:bg-[#915EFF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                  disabled={isSubmitting || submitStatus === 'success'}
+                  className={`py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary transition-all duration-300 disabled:cursor-not-allowed flex items-center gap-2 ${
+                    submitStatus === 'success' 
+                      ? 'bg-green-500 hover:bg-green-600' 
+                      : 'bg-tertiary hover:bg-[#915EFF] disabled:opacity-50'
+                  }`}
                 >
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       Sending...
+                    </>
+                  ) : submitStatus === 'success' ? (
+                    <>
+                      <CheckCircle className="w-5 h-5 animate-bounce" />
+                      Sent Successfully!
                     </>
                   ) : (
                     'Send Message'
@@ -726,10 +735,24 @@ export default function App() {
                 </button>
                 
                 {submitStatus === 'success' && (
-                  <p className="text-green-400 text-sm font-medium">Thank you! Your message has been sent successfully.</p>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-green-400 bg-green-400/10 px-4 py-3 rounded-lg border border-green-400/20 mt-2 w-fit"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-400 shrink-0" />
+                    <p className="text-sm font-medium">Thank you! Your message has been sent successfully.</p>
+                  </motion.div>
                 )}
                 {submitStatus === 'error' && (
-                  <p className="text-red-400 text-sm font-medium">Oops! Something went wrong. Please try again later.</p>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-red-400 bg-red-400/10 px-4 py-3 rounded-lg border border-red-400/20 mt-2 w-fit"
+                  >
+                    <X className="w-5 h-5 text-red-400 shrink-0" />
+                    <p className="text-sm font-medium">Oops! Something went wrong. Please try again later.</p>
+                  </motion.div>
                 )}
               </div>
             </form>
