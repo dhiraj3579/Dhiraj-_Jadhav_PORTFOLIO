@@ -38,6 +38,17 @@ const EXPERIENCE = [
 
 const PROJECTS = [
   {
+    title: "DJ-STOCK Premium Inventory Management System",
+    description: "A comprehensive, full-stack inventory management system designed to track stock levels, manage products, and provide real-time analytics for business operations.",
+    tags: [
+      { name: "Inventory Management", color: "blue-text-gradient" },
+      { name: "Full-Stack", color: "green-text-gradient" },
+      { name: "Analytics", color: "pink-text-gradient" }
+    ],
+    source_code_link: "https://github.com/dhiraj3579/DJ-STOCK--Premium-Inventory-Management-System",
+    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=800&auto=format&fit=crop"
+  },
+  {
     title: "BI Strategist Pro",
     description: "A high-end platform for BI Developers and Data Scientists to architect comprehensive dashboard roadmaps, integrating predictive analytics and advanced data prep guides using Advanced AI.",
     tags: [
@@ -427,7 +438,7 @@ export default function App() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">What I have done so far</p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Work Experience.</h2>
+          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Work Experience</h2>
         </motion.div>
 
         <div className="mt-20 flex flex-col">
@@ -471,7 +482,7 @@ export default function App() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">My work</p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Projects.</h2>
+          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Projects</h2>
         </motion.div>
 
         <div className="w-full flex">
@@ -556,7 +567,7 @@ export default function App() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">What I know</p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Technical Skills.</h2>
+          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Technical Skills</h2>
         </motion.div>
 
         <div className="mt-20 flex flex-wrap gap-10">
@@ -618,7 +629,7 @@ export default function App() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">My academic background</p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Education.</h2>
+          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Education</h2>
         </motion.div>
 
         <div className="mt-20 flex flex-col">
@@ -656,7 +667,7 @@ export default function App() {
             className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
           >
             <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">Get in touch</p>
-            <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Contact.</h3>
+            <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Contact</h3>
 
             <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
               {/* FormSubmit Configuration */}
@@ -737,7 +748,7 @@ export default function App() {
             <div className="w-full h-full flex flex-col justify-center gap-8 z-10 relative pointer-events-none">
               <div className="mb-4">
                 <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">Direct Contact</p>
-                <h3 className="text-white font-black md:text-[40px] sm:text-[30px] xs:text-[25px] text-[20px]">My Details.</h3>
+                <h3 className="text-white font-black md:text-[40px] sm:text-[30px] xs:text-[25px] text-[20px]">My Details</h3>
               </div>
 
               <div className="flex items-center gap-4 text-secondary hover:text-white transition-colors pointer-events-auto">
