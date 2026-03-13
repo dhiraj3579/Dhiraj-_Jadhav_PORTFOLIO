@@ -19,7 +19,7 @@ const AnimatedShape = () => {
   });
 
   return (
-    <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
+    <Float speed={1.5} rotationIntensity={1} floatIntensity={0.2}>
       <Sphere ref={meshRef} args={[1.2, 64, 64]}>
         <MeshDistortMaterial
           color="#915EFF"
@@ -53,7 +53,7 @@ const AnimatedShape = () => {
 export default function Hero3DModel() {
   return (
     <div className="w-full h-full cursor-grab active:cursor-grabbing">
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+      <Canvas camera={{ position: [0, 0, 9.5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#915EFF" />

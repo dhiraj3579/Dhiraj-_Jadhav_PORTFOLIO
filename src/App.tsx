@@ -8,7 +8,7 @@ import {
   Code2, Database, BrainCircuit, LineChart, GraduationCap, 
   Briefcase, Terminal, Send, MessageSquare, Menu, X, ArrowDown, CheckCircle
 } from 'lucide-react';
-import CanvasParticles from './components/CanvasParticles';
+import DataFlowBackground from './components/DataFlowBackground';
 import CustomCursor from './components/CustomCursor';
 import SkillsMarquee from './components/SkillsMarquee';
 import Stats from './components/Stats';
@@ -266,60 +266,70 @@ export default function App() {
     <div className="relative z-0 bg-primary overflow-x-hidden">
       <ScrollProgress />
       <CustomCursor />
-      <CanvasParticles />
+      <DataFlowBackground />
       <BackToTop />
       
       {/* Navigation */}
-      <nav className="sm:px-16 px-6 w-full flex items-center py-5 fixed top-0 z-20 bg-primary/90 backdrop-blur-sm">
-        <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-          <a href="/" className="flex items-center gap-2" onClick={() => { window.scrollTo(0, 0); }}>
-            <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center">
-              <span className="text-primary font-bold text-[18px]">DJ</span>
+      <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+        <div className="w-full max-w-5xl flex justify-between items-center px-4 sm:px-6 py-3 rounded-full bg-[#050816]/70 backdrop-blur-md border border-[#915EFF]/30 shadow-[0_0_20px_rgba(145,94,255,0.2)] pointer-events-auto transition-all duration-300">
+          <a href="/" className="flex items-center gap-3 group" onClick={() => { window.scrollTo(0, 0); }}>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#915EFF] to-[#00cea8] p-[2px] shadow-[0_0_10px_rgba(145,94,255,0.5)] group-hover:shadow-[0_0_20px_rgba(0,206,168,0.6)] transition-all duration-300">
+              <div className="w-full h-full rounded-full bg-[#050816] flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
+                <span className="text-white font-black text-[16px] tracking-wider">DJ</span>
+              </div>
             </div>
-            <p className="text-white text-[18px] font-bold cursor-pointer flex">
-              Dhiraj &nbsp;<span className="sm:block hidden">| Data Scientist</span>
+            <p className="text-white text-[18px] font-bold cursor-pointer flex items-center">
+              Dhiraj <span className="text-[#915EFF] mx-2 hidden sm:block">/</span> <span className="sm:block hidden text-secondary text-[14px] font-medium">Data Scientist</span>
             </p>
           </a>
-          <ul className="list-none hidden sm:flex flex-row gap-10">
+          
+          <ul className="list-none hidden md:flex flex-row gap-2">
             {['Experience', 'Projects', 'Skills', 'Education', 'Contact'].map((nav) => (
               <li
                 key={nav}
-                className={`${
-                  activeNav === nav ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer transition-colors`}
+                className={`relative px-4 py-2 rounded-full cursor-pointer transition-all duration-300 ${
+                  activeNav === nav ? "text-white" : "text-secondary hover:text-white"
+                }`}
                 onClick={() => setActiveNav(nav)}
               >
-                <a href={`#${nav.toLowerCase()}`}>{nav}</a>
+                {activeNav === nav && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-[#915EFF]/20 to-[#00cea8]/20 border border-[#915EFF]/50"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <a href={`#${nav.toLowerCase()}`} className="font-medium text-[15px] z-10 relative">{nav}</a>
               </li>
             ))}
           </ul>
 
-          <div className="sm:hidden flex flex-1 justify-end items-center">
+          <div className="md:hidden flex items-center">
             <div 
-              className="w-[28px] h-[28px] cursor-pointer flex items-center justify-center"
+              className="w-[35px] h-[35px] rounded-full bg-[#915EFF]/20 flex items-center justify-center cursor-pointer border border-[#915EFF]/50"
               onClick={() => setToggle(!toggle)}
             >
-              {toggle ? <X className="w-full h-full text-white" /> : <Menu className="w-full h-full text-white" />}
+              {toggle ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
             </div>
 
             <div
               className={`${
                 !toggle ? "hidden" : "flex"
-              } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl bg-tertiary shadow-card`}
+              } p-6 absolute top-16 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-2xl bg-[#050816]/90 backdrop-blur-xl border border-[#915EFF]/30 shadow-[0_0_20px_rgba(145,94,255,0.3)]`}
             >
               <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
                 {['Experience', 'Projects', 'Skills', 'Education', 'Contact'].map((nav) => (
                   <li
                     key={nav}
-                    className={`font-medium cursor-pointer text-[16px] ${
-                      activeNav === nav ? "text-white" : "text-secondary"
+                    className={`font-medium cursor-pointer text-[16px] w-full ${
+                      activeNav === nav ? "text-[#00cea8]" : "text-secondary"
                     }`}
                     onClick={() => {
                       setToggle(!toggle);
                       setActiveNav(nav);
                     }}
                   >
-                    <a href={`#${nav.toLowerCase()}`}>{nav}</a>
+                    <a href={`#${nav.toLowerCase()}`} className="block w-full">{nav}</a>
                   </li>
                 ))}
               </ul>
@@ -329,7 +339,7 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative w-full h-screen mx-auto bg-primary bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#151030] via-[#050816] to-[#050816] overflow-hidden">
+      <section className="relative w-full min-h-screen mx-auto bg-transparent overflow-hidden flex flex-col justify-start md:justify-center pt-[120px] pb-20">
         {/* Floating Background Shapes */}
         <motion.div
           animate={{
@@ -348,7 +358,7 @@ export default function App() {
           className="absolute bottom-[20%] left-[10%] w-72 h-72 bg-[#00cea8] rounded-full mix-blend-multiply filter blur-[128px] opacity-20"
         />
 
-        <div className="absolute inset-0 top-[120px] max-w-7xl mx-auto sm:px-16 px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-10 z-10 pointer-events-none">
+        <div className="relative max-w-7xl mx-auto sm:px-16 px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-10 z-10 pointer-events-none w-full">
           <div className="flex flex-row items-start gap-5 flex-1 pointer-events-auto">
             <div className="flex flex-col justify-center items-center mt-5">
               <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
@@ -378,7 +388,7 @@ export default function App() {
                 />
               </div>
               
-              <div className="flex flex-row gap-3 sm:gap-4 mt-10 flex-nowrap sm:overflow-visible overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex flex-row flex-wrap gap-3 sm:gap-4 mt-10">
                 <MagneticWrapper>
                   <a href="mailto:dhirajjadhav3579@gmail.com" className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-tertiary text-white rounded-xl hover:bg-[#915EFF] transition-colors shadow-card whitespace-nowrap text-sm sm:text-base">
                     <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -415,7 +425,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="flex-1 hidden md:flex justify-center items-center pointer-events-auto h-[400px] lg:h-[500px] w-full"
+            className="flex-1 hidden md:flex justify-center items-center pointer-events-auto h-[500px] lg:h-[600px] w-full"
           >
             <Hero3DModel />
           </motion.div>
@@ -431,15 +441,18 @@ export default function App() {
       {/* Experience Section */}
       <section className="sm:px-16 px-6 sm:py-16 py-10 max-w-7xl mx-auto relative z-0">
         <span className="hash-span" id="experience">&nbsp;</span>
-        <motion.div 
-          variants={textVariant()}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">What I have done so far</p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Work Experience</h2>
-        </motion.div>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
+          <motion.div 
+            variants={textVariant()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="flex-1"
+          >
+            <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">What I have done so far</p>
+            <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Work Experience</h2>
+          </motion.div>
+        </div>
 
         <div className="mt-20 flex flex-col">
           <VerticalTimeline>
@@ -475,28 +488,32 @@ export default function App() {
       {/* Projects Section */}
       <section className="sm:px-16 px-6 sm:py-16 py-10 max-w-7xl mx-auto relative z-0">
         <span className="hash-span" id="projects">&nbsp;</span>
-        <motion.div 
-          variants={textVariant()}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">My work</p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Projects</h2>
-        </motion.div>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
+          <div className="flex-1">
+            <motion.div 
+              variants={textVariant()}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">My work</p>
+              <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Projects</h2>
+            </motion.div>
 
-        <div className="w-full flex">
-          <motion.p
-            variants={fadeIn("", "", 0.1, 1)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
-            className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
-          >
-            Following projects showcases my skills and experience through real-world examples of my work. 
-            Each project reflects my ability to solve complex problems, work with different technologies, 
-            and manage projects effectively.
-          </motion.p>
+            <div className="w-full flex">
+              <motion.p
+                variants={fadeIn("", "", 0.1, 1)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.1 }}
+                className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
+              >
+                Following projects showcases my skills and experience through real-world examples of my work. 
+                Each project reflects my ability to solve complex problems, work with different technologies, 
+                and manage projects effectively.
+              </motion.p>
+            </div>
+          </div>
         </div>
 
         <div className="mt-20 flex flex-wrap gap-7">
@@ -622,15 +639,18 @@ export default function App() {
       {/* Education Section */}
       <section className="sm:px-16 px-6 sm:py-16 py-10 max-w-7xl mx-auto relative z-0">
         <span className="hash-span" id="education">&nbsp;</span>
-        <motion.div 
-          variants={textVariant()}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">My academic background</p>
-          <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Education</h2>
-        </motion.div>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
+          <motion.div 
+            variants={textVariant()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="flex-1"
+          >
+            <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">My academic background</p>
+            <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Education</h2>
+          </motion.div>
+        </div>
 
         <div className="mt-20 flex flex-col">
           <VerticalTimeline>

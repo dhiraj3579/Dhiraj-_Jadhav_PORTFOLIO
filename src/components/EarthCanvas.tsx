@@ -70,8 +70,8 @@ const DataGlobe = () => {
 
 export default function NetworkCanvas() {
   return (
-    <div className="w-full h-full min-h-[350px] cursor-grab active:cursor-grabbing">
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+    <div className="w-full h-full min-h-[450px] cursor-grab active:cursor-grabbing">
+      <Canvas camera={{ position: [0, 0, 5.5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <DataGlobe />
         <OrbitControls 
